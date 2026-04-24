@@ -1,7 +1,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import React from 'react'
+import React, { use, useState } from 'react'
+import Dropdown from './Dropdown'
+import NavLink from './NavLink'
+import ResponsiveNavLink from './ResponsiveNavLink'
 
-const Aside = ({user,children}) => {
+const Aside = ({user}) => {
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
   return (
 
 
@@ -49,12 +53,133 @@ const Aside = ({user,children}) => {
         <span className="text-xl font-bold tracking-tight text-blue-900 dark:text-blue-100 font-manrope">Clinical Portal</span>
         </div>
         <div className="flex items-center gap-4">
-        <button className="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 text-slate-500">
-            <span className="material-symbols-outlined" data-icon="search">search</span>
-        </button>
-        <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
-            <img alt="Staff Profile" className="w-full h-full object-cover" data-alt="close up headshot of a healthcare professional in clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWYBkpjzoFkfgmdlNL467a9ry2Ykj2UfA5YHd6dJXNKEmpjJ-f34o2nCy1iyq0AtqaQ15DF8ryWB9zq8glfQ68j3oF6BeyD47l0_XKzlHzvVwZ3IYlb6ZxUWavkRti_GSWMmj7D3VT80Qq5ApSqp9Db-_H3MOo00-uLwhvsADzMeZRRSzqXWYnmoHxioBp-Bqu1FpqwWT41SgAtHDj2QqT4ezzhCNcEiZdzaFIjVVvu4JA6cP-gpMLETSjLtPU1oxRMV3ZeepEgIos" />
-        </div>
+         <nav className="border-b border-gray-100 bg-white">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex h-16 justify-between">
+                        <div className="hidden sm:ms-6 sm:flex sm:items-center">
+                            <div className="relative ms-3">
+                                <Dropdown>
+                                    <Dropdown.Trigger>
+                                        <span className="inline-flex rounded-md">
+                                            <button
+                                                type="button"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                            >
+                                                {user.name}
+
+                                                <svg
+                                                    className="-me-0.5 ms-2 h-4 w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </Dropdown.Trigger>
+
+                                    <Dropdown.Content>
+                                        <Dropdown.Link
+                                            href={route('profile.edit')}
+                                        >
+                                            Profile
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route('logout')}
+                                            method="post"
+                                            as="button"
+                                        >
+                                            Log Out
+                                        </Dropdown.Link>
+                                    </Dropdown.Content>
+                                </Dropdown>
+                            </div>
+                        </div>
+
+                        <div className="-me-2 flex items-center sm:hidden">
+                            <button
+                                onClick={() =>
+                                    setShowingNavigationDropdown(
+                                        (previousState) => !previousState,
+                                    )
+                                }
+                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
+                            >
+                                <svg
+                                    className="h-6 w-6"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        className={
+                                            !showingNavigationDropdown
+                                                ? 'inline-flex'
+                                                : 'hidden'
+                                        }
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                    <path
+                                        className={
+                                            showingNavigationDropdown
+                                                ? 'inline-flex'
+                                                : 'hidden'
+                                        }
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={
+                        (showingNavigationDropdown ? 'block' : 'hidden') +
+                        ' sm:hidden'
+                    }
+                >
+                    <div className="space-y-1 pb-3 pt-2">
+                        
+                    </div>
+
+                    <div className="border-t border-gray-200 pb-1 pt-4">
+                        <div className="px-4">
+                            <div className="text-base font-medium text-gray-800">
+                                {user.name}
+                            </div>
+                            <div className="text-sm font-medium text-gray-500">
+                                {user.email}
+                            </div>
+                        </div>
+
+                        <div className="mt-3 space-y-1">
+                            <ResponsiveNavLink href={route('profile.edit')}>
+                                Profile
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                method="post"
+                                href={route('logout')}
+                                as="button"
+                            >
+                                Log Out
+                            </ResponsiveNavLink>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+
         </div>
     </header>
       
