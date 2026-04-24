@@ -16,7 +16,7 @@ export default function Login({ status, canResetPassword }) {
 
     const submit = (e) => {
         e.preventDefault();
-
+       
         post(route('login'), {
             onFinish: () => reset('password'),
         });
@@ -45,7 +45,7 @@ export default function Login({ status, canResetPassword }) {
                   <p className="font-body-sm text-body-sm text-secondary">Personal Autorizado.</p>
                 </div>
                 {/* Login Form */}
-                <form className="space-y-6">
+                <form onSubmit={submit} className="space-y-6">
                   <div className="space-y-2">
                     <label className="font-label-md text-label-md text-on-surface-variant block" htmlFor="email">Correo Electronico</label>
                     <div className="relative">
@@ -64,7 +64,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                   </div>
                   
-                  <button className="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container active:opacity-80 transition-all shadow-sm" type="submit">
+                  <button type='submit' className="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container active:opacity-80 transition-all shadow-sm" type="submit">
                     Acceder
                     <span className="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
                   </button>

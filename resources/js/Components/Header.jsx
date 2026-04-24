@@ -10,8 +10,7 @@ const Header = () => {
       <span className="text-lg font-bold text-blue-900 dark:text-blue-50">ClinicalPortal</span>
     </div>
     <nav className="hidden md:flex gap-6 items-center">
-      <a className="text-blue-700 dark:text-blue-300 font-semibold transition-colors hover:text-blue-800 dark:hover:text-blue-200" href="#">System Status</a>
-      <a className="text-slate-500 dark:text-slate-400 transition-colors hover:text-blue-800 dark:hover:text-blue-200" href="#">Support</a>
+      <a className="text-slate-500 dark:text-slate-400 transition-colors hover:text-blue-800 dark:hover:text-blue-200" href="#">Registro</a>
     </nav>
   </div>
 </header>
