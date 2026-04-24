@@ -9,11 +9,7 @@ const Footer = () => {
                         <div className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                             © 2026 Clinical Health Systems. Institutional Trust Verified.
                         </div>
-                        <div className="flex gap-8">
-                            <Link className="text-slate-500 dark:text-slate-400 hover:underline decoration-blue-500 underline-offset-4 transition-all duration-200" href="#">Privacy Policy</Link>
-                            <Link className="text-slate-500 dark:text-slate-400 hover:underline decoration-blue-500 underline-offset-4 transition-all duration-200" href="#">Terms of Service</Link>
-                            <Link className="text-slate-500 dark:text-slate-400 hover:underline decoration-blue-500 underline-offset-4 transition-all duration-200" href="#">Help Desk</Link>
-                        </div>
+                        
                     </div>
                 </footer>
     

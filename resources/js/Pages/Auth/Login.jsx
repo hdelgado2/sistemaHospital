@@ -73,11 +73,7 @@ export default function Login({ status, canResetPassword }) {
               
               </div>
               {/* Contextual Help */}
-              <div className="mt-6 text-center">
-                <p className="font-body-sm text-body-sm text-secondary">
-                  Experiencing issues? <a className="text-primary font-semibold hover:underline" href="#">Contact IT Helpdesk</a>
-                </p>
-              </div>
+             
             </div>
           </main>
           <Footer/>
