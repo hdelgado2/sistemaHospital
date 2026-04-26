@@ -48,22 +48,22 @@ const Aside = ({user}) => {
     </aside>
     <div className="lg:ml-64 flex flex-col">
    
-    <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 flex justify-between items-center w-full px-6 py-4 max-w-full">
+    <header className="dark:bg-slate-900 bg-white  border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 flex justify-between items-center w-full px-6 py-4 max-w-full">
         <div className="flex items-center gap-4">
         <span className="text-xl font-bold tracking-tight text-blue-900 dark:text-blue-100 font-manrope">Clinical Portal</span>
         </div>
         <div className="flex items-center gap-4">
-         <nav className="border-b border-gray-100 bg-white">
+         <nav className="border-b border-gray-100  dark:border-slate-800  dark:bg-slate-900 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
+                                        <span className="inline-flex dark:bg-slate-900 dark:text-slate-400 bg-white rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex dark:bg-slate-900 dark:text-slate-400 items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -83,12 +83,24 @@ const Aside = ({user}) => {
                                         </span>
                                     </Dropdown.Trigger>
 
-                                    <Dropdown.Content>
+                                    <Dropdown.Content >
                                         <Dropdown.Link
                                             href={route('profile.edit')}
                                         >
                                             Profile
                                         </Dropdown.Link>
+                                    <Dropdown.Link onClick={(e) => {
+                                        e.preventDefault();
+                                        document.documentElement.classList.toggle('dark');
+                                        }}>
+                                        Modo Oscuro                            
+                                    </Dropdown.Link>
+                                    <Dropdown.Link onClick={(e) => {
+                                        e.preventDefault();
+                                        document.documentElement.classList.toggle('dark');
+                                    }}>
+                                        Modo Claro
+                                    </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
@@ -147,19 +159,19 @@ const Aside = ({user}) => {
                 <div
                     className={
                         (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
+                        ' sm:hidden dark:bg-slate-900 bg-white border-b dark:border-slate-800 border-gray-100'
                     }
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         
                     </div>
 
-                    <div className="border-t border-gray-200 pb-1 pt-4">
+                    <div className="border-t border-gray-200 dark:border-slate-800 pb-1 pt-4">
                         <div className="px-4">
-                            <div className="text-base font-medium text-gray-800">
+                            <div className="text-base font-medium text-gray-800 dark:text-white">
                                 {user.name}
                             </div>
-                            <div className="text-sm font-medium text-gray-500">
+                            <div className="text-sm font-medium text-gray-500 dark:text-slate-400">
                                 {user.email}
                             </div>
                         </div>
@@ -167,6 +179,16 @@ const Aside = ({user}) => {
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
                                 Profile
+                            </ResponsiveNavLink>
+                               <ResponsiveNavLink onClick={() => {
+                                document.documentElement.classList.toggle('dark');
+                                 }}>
+                                Modo Oscur                            
+                            </ResponsiveNavLink>
+                             <ResponsiveNavLink onClick={() => {
+                                document.documentElement.classList.toggle('dark');
+                            }}>
+                                Modo Claro
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"

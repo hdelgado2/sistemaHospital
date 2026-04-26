@@ -5,6 +5,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import Aside from '@/Components/Aside';
+import { ThemeProvider } from '@/Context/ThemeContext';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
@@ -14,6 +15,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
     return (
         <body className="min-h-screen  bg-background text-on-surface">
+            <ThemeProvider>
 
         
 
@@ -23,6 +25,7 @@ export default function AuthenticatedLayout({ header, children }) {
             </main>
             
         
+        </ThemeProvider>
         </body>
     );
 }
