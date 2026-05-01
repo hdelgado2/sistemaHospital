@@ -4,6 +4,7 @@ import Dropdown from './Dropdown'
 import NavLink from './NavLink'
 import ResponsiveNavLink from './ResponsiveNavLink'
 import menu from '@/menu/menu'
+import { Link } from '@inertiajs/react'
 
 const Aside = ({user}) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -28,8 +29,8 @@ const Aside = ({user}) => {
       {menu.map((item) => (
         <NavLink
           key={item.label}
-          //href={route(item.route)}
-          //active={route().current(item.route)}
+          href={item.route}
+          active={route().current(item.route)}
           onClick={() => setShowingNavigationDropdown(false)}
         >
           <span className="material-symbols-outlined pl-2" data-icon={item.icon}>{item.icon}</span>
@@ -47,7 +48,9 @@ const Aside = ({user}) => {
    
     <header className="dark:bg-slate-900 bg-white  border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 flex justify-between items-center w-full px-6 py-4 max-w-full">
         <div className="flex items-center gap-4">
+        <Link href={route('dashboard')}>
         <span className="text-xl font-bold tracking-tight text-blue-900 dark:text-blue-100 font-manrope">Clinical Portal</span>
+        </Link>
         </div>
         <div className="flex items-center gap-4">
          <nav className="border-b border-gray-100  dark:border-slate-800  dark:bg-slate-900 bg-white">

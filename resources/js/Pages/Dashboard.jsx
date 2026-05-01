@@ -2,6 +2,7 @@ import Estadisticas from '@/Components/Estadisticas';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import Table from '@/Components/Table';
+import { children } from 'react';
 
 export default function Dashboard() {
     return (
@@ -18,7 +19,7 @@ export default function Dashboard() {
   <div className="grid grid-cols-1  gap-gutter">
     {/* Left Column: Upcoming Appointments (8 cols) */}
     <div className=" space-y-gutter">
-                
+               {children} 
     </div>
     
   </div>

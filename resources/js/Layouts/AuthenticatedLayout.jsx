@@ -15,7 +15,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
     return (
         <body className="min-h-screen  bg-background text-on-surface">
-           
+            <ThemeProvider>
 
         
 
@@ -25,7 +25,7 @@ export default function AuthenticatedLayout({ header, children }) {
             </main>
             
         
-        
+        </ThemeProvider>
         </body>
     );
 }

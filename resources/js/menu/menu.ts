@@ -2,9 +2,10 @@ const menu = [
     { 
         label: 'Admisión / Registro', 
         icon: 'dashboard', 
-        route: '/admision_paciente' 
+        route: '/admision' ,
+        
     },
-    { 
+   /* { 
         label: 'Citas / Agenda', 
         icon: 'group', 
         route: '/agenda' 
@@ -53,7 +54,7 @@ const menu = [
         label: 'Seguridad / Usuarios', 
         icon: 'lock', 
         route: '/seguridad_usuarios' 
-    },
+    },*/
    
 ]
 export default menu  
