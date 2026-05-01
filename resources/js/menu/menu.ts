@@ -21,24 +21,39 @@ const menu = [
     },
     { 
         label: 'Farmacia', 
-        icon: 'history_edu', 
+        icon: 'local_pharmacy', 
         route: '/farmacia' 
     },
     {
         label: 'Estudios de Imagen y Laboratorio', 
-        icon: 'local_shipping', 
+        icon: 'biotech', 
         route: '/estudios_laboratorio' 
     },
     {
         label: 'Facturación y Cobranza', 
-        icon: 'history_edu', 
+        icon: 'payment', 
         route: '/facturacion' 
     },
     {
-        label: 'Módulo de Reportes y Análisis', 
-        icon: 'history_edu', 
+        label: 'Reportes y Análisis', 
+        icon: 'bar_chart', 
         route: '/reportes' 
-    }
+    },
+    {
+        label: 'Radiología', 
+        icon: 'radio_button_unchecked', 
+        route: '/radiologia' 
+    },
+    {
+        label: 'Inventario', 
+        icon: 'local_shipping', 
+        route: '/inventario' 
+    },
+    {
+        label: 'Seguridad / Usuarios', 
+        icon: 'lock', 
+        route: '/seguridad_usuarios' 
+    },
    
 ]
 export default menu  
