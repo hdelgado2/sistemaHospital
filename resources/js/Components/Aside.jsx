@@ -3,6 +3,7 @@ import React, { use, useState } from 'react'
 import Dropdown from './Dropdown'
 import NavLink from './NavLink'
 import ResponsiveNavLink from './ResponsiveNavLink'
+import menu from '@/menu/menu'
 
 const Aside = ({user}) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -24,23 +25,19 @@ const Aside = ({user}) => {
       </div>
     </div>
     <nav className="space-y-1">
-      <a className="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-bold border-r-4 border-blue-700 transition-all duration-150 ease-in-out" href="#">
-        <span className="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-        <span className="font-manrope text-sm">Dashboard</span>
-      </a>
-      <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-150 ease-in-out" href="#">
-        <span className="material-symbols-outlined" data-icon="group">group</span>
-        <span className="font-manrope text-sm">Patients</span>
-      </a>
-      <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-150 ease-in-out" href="#">
-        <span className="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
-        <span className="font-manrope text-sm">Calendar</span>
-      </a>
-      <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-150 ease-in-out" href="#">
-        <span className="material-symbols-outlined" data-icon="history_edu">history_edu</span>
-        <span className="font-manrope text-sm">Medical Records</span>
-      </a>
-    </nav>
+      {menu.map((item) => (
+        <NavLink
+          key={item.label}
+          //href={route(item.route)}
+          //active={route().current(item.route)}
+          onClick={() => setShowingNavigationDropdown(false)}
+        >
+          <span className="material-symbols-outlined pl-2" data-icon={item.icon}>{item.icon}</span>
+          <span className="font-manrope text-sm pl-2">{item.label}</span>
+        </NavLink>
+      ))}
+      
+        </nav>
   </div>
   <div className="mt-auto px-6 py-6 border-t border-slate-200 dark:border-slate-800">
     <p className="text-xs text-slate-400 font-manrope">Hospital Unit A</p>

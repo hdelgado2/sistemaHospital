@@ -7,16 +7,16 @@ export default function Dashboard() {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
+                    Dashboardmn
                 </h2>
             }
         >
       <div>
      <Estadisticas />
   {/* Dashboard Body: Asymmetric Layout */}
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+  <div className="grid grid-cols-1  gap-gutter">
     {/* Left Column: Upcoming Appointments (8 cols) */}
-    <div className="lg:col-span-8 space-y-gutter">
+    <div className=" space-y-gutter">
       <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
         <div className="px-lg py-md border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <h2 className="font-h2 text-h2 dark:text-white">Upcoming Appointments</h2>
@@ -32,7 +32,7 @@ export default function Dashboard() {
                 <th className="px-lg py-sm font-label-md text-secondary dark:text-slate-400 border-b border-slate-100 dark:border-slate-800">Status</th>
                 <th className="px-lg py-sm font-label-md text-secondary dark:text-slate-400 border-b border-slate-100 dark:border-slate-800" />
               </tr>
-            </thead>
+            </thead> 
             <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
               <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                 <td className="px-lg py-md">
@@ -109,46 +109,7 @@ export default function Dashboard() {
         </div>
       </section>
     </div>
-    {/* Right Column: Patient Admissions Chart & Quick Actions (4 cols) */}
-    <div className="lg:col-span-4 space-y-gutter">
-      {/* Patient Admission Trend (Simplified UI Representation) */}
-      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-md shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
-        <h3 className="font-h3 text-h3 dark:text-white mb-md">Admission Trend</h3>
-        <div className="h-40 flex items-end gap-2 mb-md">
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '40%'}} />
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '60%'}} />
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '45%'}} />
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '80%'}} />
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '55%'}} />
-          <div className="bg-primary/10 dark:bg-primary/20 w-full rounded-t" style={{height: '70%'}} />
-          <div className="bg-primary w-full rounded-t" style={{height: '95%'}} />
-        </div>
-        <div className="flex justify-between text-[10px] text-secondary dark:text-slate-400 font-label-md">
-          <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
-        </div>
-      </section>
-      {/* Quick Tools / Health Alerts */}
-      <section className="bg-primary-container dark:bg-slate-900 border dark:border-slate-800 text-white rounded-xl p-lg relative overflow-hidden">
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-md">
-            <span className="material-symbols-outlined text-tertiary-fixed" data-icon="warning" style={{fontVariationSettings: '"FILL" 1'}}>warning</span>
-            <h3 className="font-h3 text-h3 text-inverse-on-surface dark:text-white">Unit Alerts</h3>
-          </div>
-          <p className="font-body-sm text-blue-100 dark:text-blue-200 mb-lg">3 patients in ICU require immediate lab review.</p>
-          <button className="w-full bg-white dark:bg-slate-800 text-primary dark:text-blue-400 font-label-md py-sm rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">Review Critical Files</button>
-        </div>
-        {/* Decorative background element */}
-        <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
-      </section>
-      {/* Facility Map / Search */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden h-48 relative group">
-        <img alt="Hospital Map" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="high contrast minimalist architectural floor plan of a modern hospital wing with blue highlight areas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBucbQlve4AnA63Fwv6JNxi4CcwIPU0jC_mZ-zQ1YmLCWdD_Mof4hSzpxutSc6GvmEBse_39GD0l2dUX1yA8LBh3vGcp8E2Ixa3adIrh-TeBsRuUSlBSELfv9U-3vaHK3_XXCLrXOMJu_m-K7_01_6HZzn4lRTsBAefS45BnIh-Sj7KH9PKpz73sqQykqcc4hmRRsNdmZRToXdrdaTtrC886P1PE4Jm-bOsfmVY-A7_diVnQ3dbAUZ0auIZNnWD_2XJgJqX7xOKr-41" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-md">
-          <h4 className="text-white font-bold text-sm">Facility Map - Wing B</h4>
-          <p className="text-white/80 text-xs">Locate departments and rooms</p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </div>
 

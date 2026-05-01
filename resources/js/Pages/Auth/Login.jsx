@@ -5,13 +5,13 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
+import GuestLayout from '@/Layouts/GuestLayout';   
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
-        password: '',
+        password: '', 
     });
 
     const submit = (e) => {
@@ -23,11 +23,11 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <>  
-            
+        <>
+            <Head title="Iniciar sesión" />
 
             <Header/>
-            <main className="relative min-h-screen flex items-center justify-center pt-16 pb-24">
+            <main className=" relative min-h-screen flex items-center justify-center pt-16 pb-24">
             {/* Background Hero with data-alt */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img className="w-full h-full object-cover brightness-95" data-alt="clean modern hospital hallway with soft natural lighting cool blue tones and blurred background creating a sense of professional clinical calm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKLLFYQQRtmEj54De2rqbTCC9murv8bmKYe75KRV4m_o8VRPIIfHBMnS43IP0QgHo3GVCCIaAWf7WFyHoQ0z3j5qbP1zqMLccEBzLmsPpUVImf4RD7uEZoXPGvz0jPkqBR73zVPpwOVGhOgh3kmnx92I1P1BC7W8larhFRM_euX4e8fhnkLWKJKY2zO-wJHxW6ge_OPpeJykSyLbizn57OHsCIcfsj27rbgvhaszctYhgGNbqDt42CNn8jy_qPKd8Rzpc0rJtm0bzT" />
@@ -41,7 +41,7 @@ export default function Login({ status, canResetPassword }) {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-container rounded-full mb-4">
                     <span className="material-symbols-outlined text-primary text-3xl" data-icon="lock_open">lock_open</span>
                   </div>
-                  <h1 className="font-h1 text-h1 text-primary mb-2">Institucional Acceso</h1>
+                  <h1 className="font-h1 text-h1 text-primary mb-2">Acceso Institucional</h1>
                   <p className="font-body-sm text-body-sm text-secondary">Personal Autorizado.</p>
                 </div>
                 {/* Login Form */}
