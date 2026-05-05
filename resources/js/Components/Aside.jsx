@@ -4,10 +4,20 @@ import Dropdown from './Dropdown'
 import NavLink from './NavLink'
 import ResponsiveNavLink from './ResponsiveNavLink'
 import menu from '@/menu/menu'
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 
 const Aside = ({user}) => {
+    const { url } = usePage();
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [expandedMenu, setExpandedMenu] = useState(() => {
+        const initialState = {};
+        menu.forEach(item => {
+            if (item.has_children && item.children.some(c => url === c.route || url.startsWith(c.route + '/'))) {
+                initialState[item.label] = true;
+            }
+        });
+        return initialState;
+    });
   return (
 
 
@@ -26,18 +36,62 @@ const Aside = ({user}) => {
       </div>
     </div>
     <nav className="space-y-1">
-      {menu.map((item) => (
-        <NavLink
-          key={item.label}
-          href={item.route}
-          active={route().current(item.route)}
-          onClick={() => setShowingNavigationDropdown(false)}
-        >
-          <span className="material-symbols-outlined pl-2" data-icon={item.icon}>{item.icon}</span>
-          <span className="font-manrope text-sm pl-2">{item.label}</span>
-        </NavLink>
-      ))}
-      
+      {menu.map((item) => {
+        const isItemActive = item.has_children 
+            ? item.children.some(child => url === child.route || url.startsWith(child.route + '?') || url.startsWith(child.route + '/'))
+            : url === item.route || url.startsWith(item.route + '?') || url.startsWith(item.route + '/');
+
+        return (
+        <div key={item.label} className="w-full">
+          <NavLink
+            as={item.has_children ? 'button' : 'a'}
+            href={item.has_children ? undefined : item.route}
+            active={isItemActive}
+            onClick={(e) => {
+              if (item.has_children) {
+                e.preventDefault();
+                setExpandedMenu(prev => ({ ...prev, [item.label]: !prev[item.label] }));
+              } else {
+                setShowingNavigationDropdown(false);
+              }
+            }}
+            className="w-full justify-between"
+          >
+            <div className="flex items-center">
+              <span className="material-symbols-outlined pl-2" data-icon={item.icon}>{item.icon}</span>
+              <span className="font-manrope text-sm pl-2">{item.label}</span>
+            </div>
+            
+            {item.has_children && (
+              <span
+                className={`ml-auto transition-transform ${expandedMenu[item.label] ? '' : 'rotate-180'}`}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            )}
+          </NavLink>
+          {item.children && (
+            <div className={`ml-6 mt-2 flex flex-col space-y-1 ${expandedMenu[item.label] ? '' : 'hidden'}`}>
+              {item.children.map((child) => {
+                const isChildActive = url === child.route || url.startsWith(child.route + '?') || url.startsWith(child.route + '/');
+                return (
+                <NavLink
+                  key={child.label}
+                  href={child.route}
+                  active={isChildActive}
+                  onClick={() => setShowingNavigationDropdown(false)}
+                  className="w-full"
+                >
+                  <span className="material-symbols-outlined pl-2" data-icon={child.icon}>{child.icon}</span>
+                  <span className="font-manrope text-sm pl-2">{child.label}</span>
+                </NavLink>
+              )})}
+            </div>
+          )}
+        </div>
+      )})}
         </nav>
   </div>
   <div className="mt-auto px-6 py-6 border-t border-slate-200 dark:border-slate-800">

@@ -2,8 +2,15 @@ const menu = [
     { 
         label: 'Admisión / Registro', 
         icon: 'dashboard', 
-        route: '/admision' ,
-        
+        has_children: true,
+        children: [
+            { 
+                label: 'Registro de nuevos pacientes', 
+                icon: 'person', 
+                route: '/admision/registro_nuevos_pacientes' 
+            },
+           
+        ]
     },
    /* { 
         label: 'Citas / Agenda', 
