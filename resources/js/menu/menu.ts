@@ -5,9 +5,9 @@ const menu = [
         has_children: true,
         children: [
             { 
-                label: 'Registro de nuevos pacientes', 
+                label: 'Admisión de pacientes', 
                 icon: 'person', 
-                route: '/admision/registro_nuevos_pacientes' 
+                route: '/admision' 
             },
            
         ]

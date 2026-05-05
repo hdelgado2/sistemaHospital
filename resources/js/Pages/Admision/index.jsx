@@ -15,6 +15,7 @@ const index = () => {
             <div className='w-full p-6'>
                 
                 <Table
+                    ruta="admision.registrar"
                     titulo="Registro de Pacientes"
                     columnas={[
                         "Nombre",

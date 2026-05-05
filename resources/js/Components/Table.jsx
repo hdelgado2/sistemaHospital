@@ -2,13 +2,13 @@ import React from 'react'
 import PrimaryButton from './PrimaryButton'
 
 
-const Table = ({titulo,columnas,data}) => {
+const Table = ({titulo,columnas,data,ruta}) => {
   return (
     <>
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
         <div className="px-lg py-md border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <h2 className="font-h2 text-h2 dark:text-white">{titulo}</h2>
-              <PrimaryButton className='bg-green-500 dark:bg-blue-500' showIcon={true}>Registrar</PrimaryButton>
+              <PrimaryButton href={route(ruta)}  className='bg-green-500 dark:bg-blue-500' showIcon={true}>Registrar</PrimaryButton>
           
         </div>
         <div className="overflow-x-auto">
