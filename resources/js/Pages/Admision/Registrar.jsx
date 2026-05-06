@@ -3,7 +3,7 @@ import { Link, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Registrar = () => {
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, post, errors, clearErrors } = useForm({
         nombre_completo: "",
         documento: "",
         fecha_nacimiento: "",
@@ -25,6 +25,7 @@ const Registrar = () => {
 
     const submit = (e) => {
         e.preventDefault();
+        clearErrors();
         post(route("admision.registrar.post"));
     };
 
@@ -72,9 +73,18 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nombre_completo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                         placeholder="Ej. Juan Pérez García"
                                     />
+                                    {errors.nombre_completo && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.nombre_completo}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -86,8 +96,17 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("documento", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.documento
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+                                    {errors.documento && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.documento}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -102,8 +121,17 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.fecha_nacimiento
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+                                    {errors.fecha_nacimiento && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.fecha_nacimiento}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">

@@ -14,9 +14,8 @@ Route::middleware(["auth", "verified"])->group(function () {
     })->name("admision.registrar");
 
     Route::post("/admision/registrar", [
-        admisionController::class
+        admisionController::class,
         "store",
-        
     ])->name("admision.registrar.post");
 });
 
