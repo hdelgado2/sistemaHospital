@@ -3,7 +3,7 @@ import { Link, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Registrar = () => {
-    const { data, setData, post, errors, clearErrors } = useForm({
+    const { data, setData, post, errors, clearErrors, processing } = useForm({
         nombre_completo: "",
         documento: "",
         fecha_nacimiento: "",
@@ -26,7 +26,13 @@ const Registrar = () => {
     const submit = (e) => {
         e.preventDefault();
         clearErrors();
-        post(route("admision.registrar.post"));
+        post(route("admision.registrar.post"), {
+            preserveScroll: true,
+            onBefore: () => {
+                // Aquí puedes agregar lógica antes de enviar el formulario, como mostrar un spinner o deshabilitar el botón de envío
+                //
+            },
+        });
     };
 
     return (
@@ -142,7 +148,11 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("genero", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.genero
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     >
                                         <option value="">Seleccione</option>
                                         <option value="Masculino">
@@ -153,6 +163,11 @@ const Registrar = () => {
                                         </option>
                                         <option value="Otro">Otro</option>
                                     </select>
+                                    {errors.genero && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.genero}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </section>
@@ -172,8 +187,17 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("direccion", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.direccion
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+                                    {errors.direccion && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.direccion}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -185,8 +209,17 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("telefono", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.telefono
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+                                    {errors.telefono && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.telefono}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="md:col-span-3">
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -198,9 +231,18 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("email", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.email
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                         placeholder="paciente@ejemplo.com"
                                     />
+                                    {errors.email && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.email}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </section>
@@ -222,7 +264,11 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.estado_civil
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     >
                                         <option value="">Seleccione</option>
                                         <option value="Soltero/a">
@@ -236,6 +282,12 @@ const Registrar = () => {
                                         </option>
                                         <option value="Viudo/a">Viudo/a</option>
                                     </select>
+
+                                    {errors.estado_civil && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.estado_civil}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -247,8 +299,18 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("ocupacion", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.ocupacion
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+
+                                    {errors.ocupacion && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.ocupacion}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -262,7 +324,11 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nivel_educativo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     >
                                         <option value="">Seleccione</option>
                                         <option value="Primaria">
@@ -278,6 +344,11 @@ const Registrar = () => {
                                             Postgrado
                                         </option>
                                     </select>
+                                    {errors.nivel_educativo && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.nivel_educativo}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -292,8 +363,18 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nivel_educativo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+
+                                    {errors.etnia_religion && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.nivel_educativo}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </section>
@@ -316,8 +397,18 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.entidad_aseguradora
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+
+                                    {errors.entidad_aseguradora && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.entidad_aseguradora}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -328,7 +419,11 @@ const Registrar = () => {
                                         onChange={(e) =>
                                             setData("tipo_plan", e.target.value)
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.tipo_plan
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     >
                                         <option value="">Seleccione</option>
                                         <option value="Contributivo">
@@ -341,6 +436,12 @@ const Registrar = () => {
                                             Particular
                                         </option>
                                     </select>
+
+                                    {errors.tipo_plan && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.tipo_plan}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -355,8 +456,18 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nivel_educativo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+
+                                    {errors.numero_poliza && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.numero_poliza}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </section>
@@ -379,8 +490,18 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.responsable_nombre
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+
+                                    {errors.responsable_nombre && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.responsable_nombre}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -395,9 +516,19 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nivel_educativo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                         placeholder="Ej. Padre, Esposa..."
                                     />
+
+                                    {errors.responsable_parentesco && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.responsable_parentesco}
+                                        </p>
+                                    )}
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -412,8 +543,17 @@ const Registrar = () => {
                                                 e.target.value,
                                             )
                                         }
-                                        className="mt-1 block w-full border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 border"
+                                        className={`mt-1 block w-full rounded-md shadow-sm p-2 border transition-colors ${
+                                            errors.nivel_educativo
+                                                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                                                : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
+                                        } dark:bg-slate-800 dark:text-white`}
                                     />
+                                    {errors.responsable_telefono && (
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            {errors.responsable_telefono}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </section>
@@ -425,12 +565,26 @@ const Registrar = () => {
                             >
                                 Volver
                             </Link>
-                            <button
-                                type="submit"
-                                className="px-6 py-2 bg-blue-600 dark:bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 font-medium shadow-lg transition"
-                            >
-                                Guardar Paciente
-                            </button>
+                            {(processing && (
+                                <button
+                                    type="button"
+                                    className="bg-indigo-500"
+                                    disabled
+                                >
+                                    <svg
+                                        className="mr-3 size-5 mi-spinner"
+                                        viewBox="0 0 24 24"
+                                    ></svg>
+                                    Processing…
+                                </button>
+                            )) || (
+                                <button
+                                    type="submit"
+                                    className="px-6 py-2 bg-blue-600 dark:bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 font-medium shadow-lg transition"
+                                >
+                                    Guardar Paciente
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>

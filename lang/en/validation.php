@@ -186,6 +186,28 @@ return [
             "regex" =>
                 "El nombre solo puede contener letras, números y espacios.",
         ],
+        "documento" => [
+            "required" => "El campo :attribute es obligatorio.",
+            "string" => "El documento debe ser una cadena de texto.",
+            "max" => "El documento no debe tener más de :max caracteres.",
+            "unique" => "El documento ya ha sido registrado.",
+        ],
+        "email" => [
+            "required" => "El campo :attribute es obligatorio.",
+            "string" => "El correo electrónico debe ser una cadena de texto.",
+            "email" =>
+                "El correo electrónico debe ser una dirección de correo válida.",
+            "max" =>
+                "El correo electrónico no debe tener más de :max caracteres.",
+            "unique" => "El correo electrónico ya ha sido registrado.",
+        ],
+        "numero_poliza" => [
+            "required" => "El campo :attribute es obligatorio.",
+            "string" => "El número de póliza debe ser una cadena de texto.",
+            "max" =>
+                "El número de póliza no debe tener más de :max caracteres.",
+            "unique" => "El número de póliza ya ha sido registrado.",
+        ],
     ],
 
     "attributes" => [
