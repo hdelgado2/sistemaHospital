@@ -1,3 +1,4 @@
+import Table from '@/Components/Table'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import React from 'react'
 
@@ -9,11 +10,36 @@ const index = () => {
             <h2 className="text-xl font-semibold leading-tight text-gray-800">
                 Admisión
             </h2>
-        }
+        }         
     >
             <div className='w-full p-6'>
-                <h1 className="text-lg font-medium dark:text-slate-400 text-2xl text-gray-900 mb-4">Módulo de Admisión</h1>
                 
+                <Table
+                    ruta="admision.registrar"
+                    titulo="Registro de Pacientes"
+                    columnas={[
+                        "Nombre",
+                        "Apellido",
+                        "Fecha de Nacimiento",
+                        "DNI",
+                        "Celular",
+                        "Email",  
+                        "Acciones",
+                    ]}
+                    data={[
+                        {
+                            col1: "Juan",
+                            col2: "Perez",
+                            col3: "01/01/2000",
+                            col4: "12345678",
+                            col5: "123456789",
+                            col6: "hendrixdelgado725@gmail.com",
+                        },
+                    ]}
+                    
+                                       
+                    
+                />
             </div>
             
         
