@@ -4,9 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\admisionController;
+use App\Models\admision;
+
 Route::middleware(["auth", "verified"])->group(function () {
     Route::get("/admision", function () {
-        return Inertia::render("Admision/index");
+        $admisions = admision::paginate(10);
+
+        return Inertia::render("Admision/index", [
+            "admisions" => $admisions,
+        ]);
     })->name("admision");
 
     Route::get("/admision/registrar", function () {

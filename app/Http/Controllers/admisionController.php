@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\admision;
+use Inertia\Inertia;
 
 class admisionController extends Controller
 {
-    //
-
     public function store(Request $request)
     {
         $request->validate([
@@ -31,19 +31,38 @@ class admisionController extends Controller
         ]);
 
         try {
+            $admisions = admision::create([
+                "nombre_completo" => $request->nombre_completo,
+                "documento" => $request->documento,
+                "fecha_nacimiento" => $request->fecha_nacimiento,
+                "genero" => $request->genero,
+                "direccion" => $request->direccion,
+                "telefono" => $request->telefono,
+                "email" => $request->email,
+                "estado_civil" => $request->estado_civil,
+                "ocupacion" => $request->ocupacion,
+                "nivel_educativo" => $request->nivel_educativo,
+                "etnia_religion" => $request->etnia_religion,
+                "entidad_aseguradora" => $request->entidad_aseguradora,
+                "tipo_plan" => $request->tipo_plan,
+                "numero_poliza" => $request->numero_poliza,
+                "responsable_nombre" => $request->responsable_nombre,
+                "responsable_parentesco" => $request->responsable_parentesco,
+                "responsable_telefono" => $request->responsable_telefono,
+            ]);
+
+            return response()->json([
+                "message" => "Paciente registrado exitosamente",
+            ]);
         } catch (\Exception $e) {
             \Log::error("Error al registrar el paciente: " . $e->getMessage());
             return response()->json(
                 [
-                    "message" => "Error al registrar el paciente",
-                    "error" => $e->getMessage(),
+                    "message" =>
+                        "Error al registrar el paciente: " . $e->getMessage(),
                 ],
                 500,
             );
         }
-
-        return response()->json([
-            "message" => "Paciente registrado exitosamente",
-        ]);
     }
 }

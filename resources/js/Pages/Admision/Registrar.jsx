@@ -154,14 +154,15 @@ const Registrar = () => {
                                                 : "border-gray-300 dark:border-slate-700 focus:ring-blue-500 focus:border-blue-500"
                                         } dark:bg-slate-800 dark:text-white`}
                                     >
-                                        <option value="">Seleccione</option>
+                                        <option disabled value="">
+                                            Seleccione
+                                        </option>
                                         <option value="Masculino">
                                             Masculino
                                         </option>
                                         <option value="Femenino">
                                             Femenino
                                         </option>
-                                        <option value="Otro">Otro</option>
                                     </select>
                                     {errors.genero && (
                                         <p className="mt-1 text-sm text-red-600 dark:text-red-400">
