@@ -26,7 +26,8 @@ const Registrar = () => {
     const submit = (e) => {
         e.preventDefault();
         clearErrors();
-        post(route("admision.registrar.post"), {
+
+          post(route("admision.registrar.post"), {
             preserveScroll: true,
             onBefore: () => {
                 // Aquí puedes agregar lógica antes de enviar el formulario, como mostrar un spinner o deshabilitar el botón de envío

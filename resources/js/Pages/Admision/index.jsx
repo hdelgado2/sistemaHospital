@@ -1,9 +1,12 @@
 import Table from "@/Components/Table";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import React from "react";
+import React, { useState } from "react";
 
 const index = ({ admisions }) => {
+    const [columna, setcolumna] = useState(Object.keys(admisions.data[0]));
+
     console.log(admisions.data);
+
     return (
         <>
             <AuthenticatedLayout
@@ -17,22 +20,14 @@ const index = ({ admisions }) => {
                     <Table
                         ruta="admision.registrar"
                         titulo="Registro de Pacientes"
-                        columnas={[
-                            "n",
-                            "Nombre",
-                            "Fecha de Nacimiento",
-                            "DNI",
-                            "Celular",
-                            "Email",
-                            "Acciones",
-                        ]}
+                        columnas={columna}
                         data={admisions.data.map((admision) => ({
-                            col1: admision.id,
-                            col2: admision.nombre_completo,
-                            col3: admision.fecha_nacimiento,
-                            col4: admision.documento,
-                            col5: admision.telefono,
-                            col6: admision.email,
+                            col1: admision.n,
+                            col2: admision.Nombre,
+                            col3: admision["Fecha de Nacimiento"],
+                            col4: admision.DNI,
+                            col5: admision.Celular,
+                            col6: admision.Email,
                         }))}
                     />
                 </div>

@@ -4,9 +4,9 @@ import PrimaryButton from "./PrimaryButton";
 const Table = ({ titulo, columnas, data, ruta }) => {
     return (
         <>
-            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+            <section className="bg-white  dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
                 <div className="px-lg py-md border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <h2 className="font-h2 text-h2 dark:text-white">
+                    <h2 className="font-h2 text-h2 dark:text-white ">
                         {titulo}
                     </h2>
                     <PrimaryButton
@@ -20,7 +20,7 @@ const Table = ({ titulo, columnas, data, ruta }) => {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-slate-50/50 dark:bg-slate-800/50">
+                            <tr className="bg-slate-50/50 text-center dark:bg-slate-800/50">
                                 {columnas.map((columna) => (
                                     <th
                                         key={columna}
@@ -29,9 +29,12 @@ const Table = ({ titulo, columnas, data, ruta }) => {
                                         {columna}
                                     </th>
                                 ))}
+                                <th className="py-3 px-4 text-center font-semibold dark:text-slate-400">
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                        <tbody className="divide-y text-center divide-slate-50 dark:divide-slate-800">
                             {data.map((registro) => (
                                 <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td
