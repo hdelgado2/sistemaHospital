@@ -8,6 +8,11 @@ use App\Models\admision;
 use Illuminate\Support\Facades\Schema;
 
 Route::middleware(["auth", "verified"])->group(function () {
+    
+    Route::post("/admision", [admisionController::class, "filter"])->name(
+        "admision.filter",
+    );
+    
     Route::get("/admision", function () {
         $admisions = admision::select([
             "id as n",
@@ -31,6 +36,8 @@ Route::middleware(["auth", "verified"])->group(function () {
         admisionController::class,
         "store",
     ])->name("admision.registrar.post");
+
+    
 });
 
 ?>

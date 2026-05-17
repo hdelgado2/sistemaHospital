@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import PrimaryButton from "./PrimaryButton";
+import { Button } from "@headlessui/react";
+import SecondaryButton from "./SecondaryButton";
+import Search from "./Icons/Search";
+import { router, useForm } from "@inertiajs/react";
 
-const Table = ({ titulo, columnas, data, ruta }) => {
+const Table = ({ titulo, columnas, datos, ruta, filtro }) => {
+  
+    const {setData,data,processing,post} = useForm({
+        search:"",
+    })
+
+    
+    const handleSearch = (e) => {
+
+            const formData = new FormData();
+            formData.append("search", data.search);
+            post(route(filtro), formData, {
+                                           forceFormData: true,
+                                           
+                                        });
+    }
+
     return (
         <>
             <section className="bg-white  dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
@@ -9,13 +29,49 @@ const Table = ({ titulo, columnas, data, ruta }) => {
                     <h2 className="font-h2 text-h2 dark:text-white ">
                         {titulo}
                     </h2>
-                    <PrimaryButton
-                        href={route(ruta)}
-                        className="bg-green-500 dark:bg-blue-500"
-                        showIcon={true}
-                    >
-                        Registrar
-                    </PrimaryButton>
+                    <div className="flex flex-col sm:flex-row  gap-4 mb-2 ">
+                        {/* Tu botón (Quedará a la derecha) */}
+                        <PrimaryButton
+                            href={route(ruta)}
+                            className="bg-green-500 dark:bg-blue-500 w-full sm:w-auto justify-center"
+                            showIcon={true}
+                        >
+                            Registrar
+                        </PrimaryButton>
+
+                        {/* Tu buscador (Quedará a la izquierda) */}
+                        <div className="w-full sm:w-72">
+                            <input
+                                onChange={(e) =>
+                                    setData("search", e.target.value)
+                                }
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        post(route(filtro), {
+                                            preserveState: true,
+                                            replace: false,
+                                        });
+                                    }
+                                }}
+                                type="text"
+                                value={data.search}
+                                placeholder="Buscar..."
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                            />
+                        </div>
+                        <Button
+                            onClick={() =>
+                               handleSearch()
+                            }
+                            className="cursor-pointer px-4 py-2 dark:bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition-colors"
+                        >
+                            <Search
+                                width={14}
+                                height={14}
+                                className="w-5 h-5"
+                            />
+                        </Button>
+                    </div>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
@@ -35,7 +91,7 @@ const Table = ({ titulo, columnas, data, ruta }) => {
                             </tr>
                         </thead>
                         <tbody className="divide-y text-center divide-slate-50 dark:divide-slate-800">
-                            {data.map((registro) => (
+                            {datos.map((registro) => (
                                 <tr className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td
                                         key={registro.id}

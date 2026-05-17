@@ -18,10 +18,11 @@ const index = ({ admisions }) => {
             >
                 <div className="w-full p-6">
                     <Table
+                        filtro="admision.filter"
                         ruta="admision.registrar"
                         titulo="Registro de Pacientes"
                         columnas={columna}
-                        data={admisions.data.map((admision) => ({
+                        datos={admisions.data.map((admision) => ({
                             col1: admision.n,
                             col2: admision.Nombre,
                             col3: admision["Fecha de Nacimiento"],

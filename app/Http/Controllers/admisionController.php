@@ -5,9 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\admision;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class admisionController extends Controller
 {
+    public function filter(Request $request): Response
+    {
+        $search = $request->input("search");
+       
+        $admision = admision::select([
+            "id as n",
+            "nombre_completo as Nombre",
+            "fecha_nacimiento as Fecha de Nacimiento",
+            "documento as DNI",
+            "telefono as Celular",
+            "email as Email",
+        ])
+            ->when($search != "", function ($query) use ($search) {
+                return $query->where("documento", "like", "%{$search}%");
+            })
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render("Admision/index", [
+            "admisions" => $admision,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
